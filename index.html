@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+button {
+    width: 150px;
+    height: 50px;
+    font-size: 14px;
+    background: linear-gradient(90deg, #00D9FF, #8A2BE2);
+    margin: 5px;
+    cursor: pointer;
+}
+
+body{
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ADS */
+.janela {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 220px;
+    padding: 10px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    display:none;
+}
+
+.janela2 {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    width: 220px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 8px;
+    display:none;
+}
+
+.janela3 {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 220px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 8px;
+    display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PROPAGANDAS -->
+<div class="janela" id="janela">
+    <button onclick="fechar('janela')">X</button>
+    <h3>Promoção!</h3>
+    <p>50% de desconto.</p>
+</div>
+
+<div class="janela2" id="janela2">
+    <button onclick="fechar('janela2')">X</button>
+    <h3>Oferta Especial!</h3>
+    <p>Compre 1 e leve 2!</p>
+</div>
+
+<div class="janela3" id="janela3">
+    <button onclick="fechar('janela3')">X</button>
+    <h3>Curso Grátis!</h3>
+    <p>Aprenda programação hoje!</p>
+    <a href="https://online.pucrs.br/graduacao/analise-desenvolvimento-sistemas-full-stack-mobile;" target="_blank">
+        clique aqui para saber mais
+    </a>
+</div>
+
+<!-- BOTÕES DE DOWNLOAD -->
+<h2>Baixar Notícias</h2>
+
+<button onclick="downloadNews(noticia1, 'noticia1.txt')">Notícia 1</button>
+<button onclick="downloadNews(noticia2, 'noticia2.txt')">Notícia 2</button>
+<button onclick="downloadNews(noticia3, 'noticia3.txt')">Notícia 3</button>
+<button onclick="downloadNews(noticia4, 'noticia4.txt')">Notícia 4</button>
+<button onclick="downloadNews(noticia5, 'noticia5.txt')">Notícia 5</button>
+<button onclick="downloadNews(noticia6, 'noticia6.txt')">Notícia 6</button>
+
+<script>
+    setTimeout(() => {
+    document.getElementById("janela").style.display = "block";
+}, 2000);
+
+setTimeout(() => {
+    document.getElementById("janela2").style.display = "block";
+}, 4000);
+
+setTimeout(() => {
+    document.getElementById("janela3").style.display = "block";
+}, 6000);
+
+function fechar(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+function mostrarAds(id, tempo) {
+    setInterval(() => {
+        document.getElementById(id).style.display = "block";
+    }, tempo);
+}
+
+// 👇 AQUI está o que faltava
+mostrarAds("janela", 8000);
+mostrarAds("janela2", 10000);
+mostrarAds("janela3", 12000);
+
+// NOTÍCIAS
+const noticia1 = `Notícia 1: IA está mudando o mundo da programação.
+
+Nos últimos anos, ferramentas de inteligência artificial começaram a ajudar desenvolvedores a criar códigos mais rapidamente.
+Isso permite que iniciantes aprendam mais fácil e profissionais ganhem produtividade.`;
+
+const noticia2 = `Notícia 2: JavaScript continua muito popular.
+
+A linguagem JavaScript segue sendo uma das mais usadas no mundo da programação web.
+Ela está presente em sites, aplicativos e até sistemas de servidores modernos.`;
+
+const noticia3 = `Notícia 3: HTML e CSS são base da web.
+
+Todo site na internet utiliza HTML para estrutura e CSS para estilo.
+Sem essas tecnologias, não existiriam páginas organizadas e bonitas na web.`;
+
+const noticia4 = `Notícia 4: Novas ferramentas de desenvolvimento surgem todo dia.
+
+O mercado de tecnologia cresce rapidamente e novas ferramentas aparecem constantemente.
+Elas ajudam programadores a trabalhar mais rápido e com menos erros.`;
+
+const noticia5 = `Notícia 5: Programadores usam IA como apoio.
+
+A inteligência artificial não substitui o programador, mas ajuda muito no processo de criação.
+Ela sugere códigos, corrige erros e acelera tarefas repetitivas.`;
+
+const noticia6 = `Notícia 6: Tecnologia cresce rapidamente no mundo.
+
+A evolução tecnológica está transformando áreas como educação, saúde e comunicação.
+Cada vez mais pessoas estão conectadas e usando ferramentas digitais no dia a dia.`;
+
+function downloadNews(texto, nomeArquivo) {
+    const blob = new Blob([texto], { type: "text/plain" });
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+    link.download = nomeArquivo;
+
+    link.click();
+}
+</script>
+
+</body>
+</html>
